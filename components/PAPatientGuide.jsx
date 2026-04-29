@@ -1,5 +1,3 @@
-'use client';
-import { supabase } from '../lib/supabase';
 import { useState, useEffect, useRef } from "react";
 import { 
   Heart, Shield, Pill, Syringe, ChevronDown, ChevronRight, 
@@ -94,6 +92,7 @@ function HomePage({ navigate }) {
         <FadeIn delay={0.1}><h1 style={{ fontSize: "clamp(30px, 5vw, 44px)", fontWeight: 700, color: "var(--text)", lineHeight: 1.15, fontFamily: "'Source Serif 4', Georgia, serif", marginBottom: 16 }}>Your Guide to<br /><span style={{ color: "var(--teal)" }}>Primary Aldosteronism</span></h1></FadeIn>
         <FadeIn delay={0.2}><p style={{ fontSize: 17, color: "var(--text-secondary)", lineHeight: 1.65, maxWidth: 520, margin: "0 auto 28px" }}>You've been diagnosed with primary aldosteronism — a treatable condition where your adrenal glands make too much of a hormone called aldosterone. This guide will help you understand your condition, your options, and what to expect.</p></FadeIn>
         <FadeIn delay={0.3}><div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "white", padding: "10px 18px", borderRadius: 30, fontSize: 13, color: "var(--teal-dark)", fontWeight: 600, boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}><BookOpen size={15} />Based on the 2025 Endocrine Society Guidelines</div></FadeIn>
+        <FadeIn delay={0.4}><p style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 14, maxWidth: 460, margin: "14px auto 0", lineHeight: 1.5 }}>This tool is for educational purposes only and does not constitute medical advice. See full disclaimer below.</p></FadeIn>
       </div>
       <div style={{ padding: "0 20px", maxWidth: 700, margin: "0 auto" }}>
         <FadeIn><p style={{ fontSize: 14, textTransform: "uppercase", letterSpacing: 1.5, color: "var(--teal)", fontWeight: 700, marginBottom: 20, textAlign: "center" }}>Explore Topics</p></FadeIn>
@@ -122,14 +121,14 @@ function UnderstandPage({ navigate }) {
         <div style={{ background: "linear-gradient(135deg, var(--teal-light) 0%, #E8F5F0 100%)", borderRadius: 20, padding: "28px 24px", marginBottom: 28, border: "1px solid var(--teal)20" }}>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: "var(--teal-dark)", marginBottom: 12 }}>🧂 The Simple Explanation</h3>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: "var(--text-secondary)" }}>You have two small glands sitting on top of your kidneys called <strong>adrenal glands</strong>. They make a hormone called <strong>aldosterone</strong>, which tells your kidneys how much salt and water to hold onto.</p>
-          <p style={{ fontSize: 15, lineHeight: 1.75, color: "var(--text-secondary)", marginTop: 12 }}>In primary aldosteronism, one or both adrenal glands make <strong>too much aldosterone</strong>. This causes your body to retain too much salt and water, which raises your blood pressure. It also causes you to lose potassium, which can make you feel tired, weak, or give you muscle cramps.</p>
+          <p style={{ fontSize: 15, lineHeight: 1.75, color: "var(--text-secondary)", marginTop: 12 }}>In primary aldosteronism, one or both adrenal glands make <strong>too much aldosterone</strong>. This causes your body to retain too much salt and water, which raises your blood pressure. It may also cause you to lose potassium, which can make you feel tired, weak, or give you muscle cramps — though many people with this condition have normal potassium levels.</p>
         </div>
       </FadeIn>
       <FadeIn delay={0.1}><h3 style={{ fontSize: 18, fontWeight: 700, color: "var(--text)", marginBottom: 16 }}>Key Facts</h3></FadeIn>
       {[
         { icon: Users, fact: "Primary aldosteronism affects 5–14% of people with high blood pressure — it's far more common than most doctors realize." },
         { icon: Activity, fact: "Most people with primary aldosteronism have normal potassium levels. You don't need low potassium to have this condition." },
-        { icon: Zap, fact: "It is caused either by a small benign growth (adenoma) on one adrenal gland, or by both glands being overactive." },
+        { icon: Zap, fact: "It is caused by overactivity in one or both adrenal glands — this can be due to a small benign growth (adenoma) or enlargement of the gland tissue (hyperplasia), on one side or both." },
         { icon: ShieldCheck, fact: "Primary aldosteronism is treatable. With the right treatment, excess cardiovascular risk can be greatly reduced, and some people are cured entirely." },
       ].map((item, i) => (
         <FadeIn key={i} delay={0.15 + i * 0.05}>
@@ -145,7 +144,7 @@ function UnderstandPage({ navigate }) {
           <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 16, padding: 20, textAlign: "center" }}>
             <div style={{ fontSize: 36, marginBottom: 8 }}>◐</div>
             <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 6, color: "var(--text)" }}>Unilateral (One Side)</div>
-            <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.6 }}>A benign growth on one adrenal gland produces too much aldosterone. This type can potentially be <strong>cured with surgery</strong>.</p>
+            <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.6 }}>One adrenal gland is the dominant source of excess aldosterone — due to a benign growth (adenoma) or gland overactivity (hyperplasia). This type can potentially be <strong>cured with surgery</strong>.</p>
           </div>
           <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 16, padding: 20, textAlign: "center" }}>
             <div style={{ fontSize: 36, marginBottom: 8 }}>◉</div>
@@ -418,7 +417,7 @@ function WhyTreatPage({ navigate }) {
         { icon: Heart, color: "#C0392B", title: "Heart", items: ["Thickens and stiffens the heart muscle", "Increases risk of heart failure (about 2× higher)", "Increases risk of atrial fibrillation (about 3.5× higher)"] },
         { icon: Brain, color: "#6B48C8", title: "Brain & Blood Vessels", items: ["Increases risk of stroke (about 2.5× higher)", "Stiffens and damages blood vessel walls", "Increases risk of coronary artery disease"] },
         { icon: Droplets, color: "#2E86AB", title: "Kidneys", items: ["Causes protein to leak into urine (kidney damage)", "Can lead to progressive kidney disease over time"] },
-        { icon: Zap, color: "#D4A017", title: "Overall Wellbeing", items: ["Fatigue, muscle weakness, and cramps from low potassium", "Reduced quality of life and psychological wellbeing", "More anxiety and lower mood reported by many patients"] },
+        { icon: Zap, color: "#D4A017", title: "Overall Wellbeing", items: ["Fatigue, muscle weakness, and cramps if potassium is low (not everyone has low potassium)", "Reduced quality of life and psychological wellbeing", "More anxiety and lower mood reported by many patients"] },
       ].map((group, i) => (
         <FadeIn key={i} delay={0.15 + i * 0.05}>
           <div style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 16, padding: 20, marginBottom: 12 }}>
@@ -450,7 +449,6 @@ function DecisionsPage({ navigate }) {
   const [showQuiz, setShowQuiz] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [submitted, setSubmitted] = useState(false);
 
   const questions = [
     { id: "user_role", q: "Before we begin — how are you using this tool today?", options: ["I'm a healthcare professional exploring the tool", "I'm a patient previewing or testing the tool", "I'm a patient using this to help with my own care decisions"] },
@@ -585,45 +583,6 @@ function DecisionsPage({ navigate }) {
   const showResult = showQuiz && step >= questions.length;
   const result = showResult ? results[getResult()] : null;
   const score = showResult ? getScore() : null;
-
-  // Submit questionnaire results to Supabase
-  useEffect(() => {
-    if (showResult && !submitted && score && result) {
-      setSubmitted(true);
-      const questionLookup = {};
-      questions.forEach(q => { questionLookup[q.id] = q; });
-      
-      supabase.from('questionnaire_responses').insert({
-        user_role_answer: answers.user_role,
-        user_role_text: questionLookup.user_role?.options[answers.user_role] || "",
-        age_answer: answers.age,
-        htn_duration_answer: answers.htn_duration,
-        bp_meds_answer: answers.bp_meds,
-        potassium_answer: answers.potassium,
-        bp_control_answer: answers.bp_control,
-        surgery_preference_answer: answers.surgery_feel,
-        meds_preference_answer: answers.meds_feel,
-        health_answer: answers.health,
-        age_text: questionLookup.age?.options[answers.age] || "",
-        htn_duration_text: questionLookup.htn_duration?.options[answers.htn_duration] || "",
-        bp_meds_text: questionLookup.bp_meds?.options[answers.bp_meds] || "",
-        potassium_text: questionLookup.potassium?.options[answers.potassium] || "",
-        bp_control_text: questionLookup.bp_control?.options[answers.bp_control] || "",
-        surgery_preference_text: questionLookup.surgery_feel?.options[answers.surgery_feel] || "",
-        meds_preference_text: questionLookup.meds_feel?.options[answers.meds_feel] || "",
-        health_text: questionLookup.health?.options[answers.health] || "",
-        surgical_benefit_score: score.surgicalBenefit,
-        surgical_fit_score: score.surgicalFit,
-        preference_score: score.prefSurgery,
-        total_score: score.total,
-        result_category: getResult(),
-        result_title: result.title,
-        user_agent: navigator.userAgent,
-      }).then(({ error }) => {
-        if (error) console.error('Supabase insert error:', error);
-      });
-    }
-  }, [showResult]);
 
   const OptionBtn = ({ text, onClick }) => (
     <button onClick={onClick}
@@ -763,7 +722,7 @@ function DecisionsPage({ navigate }) {
                   {result.actions.map((a, i) => (<NavButton key={i} onClick={() => navigate(a.page)} variant={i === 0 ? "primary" : "secondary"}>{a.label}</NavButton>))}
                 </div>
                 <div style={{ textAlign: "center", marginTop: 16 }}>
-                  <button onClick={() => { setStep(0); setAnswers({}); setShowQuiz(false); setSubmitted(false); }} style={{ background: "none", border: "none", color: "var(--text-muted)", fontSize: 14, cursor: "pointer", fontFamily: "inherit", textDecoration: "underline" }}>Start over</button>
+                  <button onClick={() => { setStep(0); setAnswers({}); setShowQuiz(false); }} style={{ background: "none", border: "none", color: "var(--text-muted)", fontSize: 14, cursor: "pointer", fontFamily: "inherit", textDecoration: "underline" }}>Start over</button>
                 </div>
               </div>
             </FadeIn>
@@ -966,24 +925,35 @@ function FeedbackWidget({ currentPage }) {
       userAgent: navigator.userAgent,
     };
     try {
-      const formData = new URLSearchParams();
-      formData.append("timestamp", payload.timestamp);
-      formData.append("page", payload.page);
-      formData.append("type", payload.type);
-      formData.append("userType", payload.userType);
-      formData.append("message", payload.message);
-      formData.append("userAgent", payload.userAgent);
+      // Create hidden iframe target
+      const iframe = document.createElement("iframe");
+      iframe.name = "feedback-frame-" + Date.now();
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
 
-      await fetch(GOOGLE_SHEET_WEBHOOK, {
-        method: "POST",
-        mode: "no-cors",
-        body: formData,
+      // Create and submit form targeting the hidden iframe
+      const form = document.createElement("form");
+      form.method = "GET";
+      form.action = GOOGLE_SHEET_WEBHOOK;
+      form.target = iframe.name;
+
+      Object.entries(payload).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
       });
+
+      document.body.appendChild(form);
+      form.submit();
+      form.remove();
+      setTimeout(() => iframe.remove(), 10000);
+
       setStatus("sent");
       setTimeout(close, 2000);
     } catch (e) {
-      setStatus("sent");
-      setTimeout(close, 2000);
+      setStatus("error");
     }
   };
 
@@ -1182,9 +1152,18 @@ export default function PAPatientGuide() {
         </div>
       </div>
       <div key={page} style={{ animation: "fadeIn 0.4s ease", paddingBottom: 60 }}><PageComponent navigate={navigate} /></div>
-      <div style={{ textAlign: "center", padding: "24px 20px 32px", borderTop: "1px solid var(--border)", maxWidth: 700, margin: "0 auto" }}>
-        <p style={{ fontSize: 12, color: "var(--text-muted)", lineHeight: 1.6, marginBottom: 8 }}>Based on the <strong>2025 Endocrine Society Clinical Practice Guidelines</strong> for Primary Aldosteronism. Adler GK, Stowasser M, et al. <em>J Clin Endocrinol Metab.</em> 2025.</p>
-        <p style={{ fontSize: 11, color: "var(--text-muted)", lineHeight: 1.5 }}>This tool is for educational purposes only and does not replace medical advice. Always discuss treatment decisions with your healthcare provider.</p>
+      <div style={{ textAlign: "center", padding: "24px 20px 12px", borderTop: "1px solid var(--border)", maxWidth: 700, margin: "0 auto" }}>
+        <p style={{ fontSize: 12, color: "var(--text-muted)", lineHeight: 1.6, marginBottom: 12 }}>Based on the <strong>2025 Endocrine Society Clinical Practice Guidelines</strong> for Primary Aldosteronism. Adler GK, Stowasser M, et al. <em>J Clin Endocrinol Metab.</em> 2025.</p>
+      </div>
+      <div style={{ background: "#F1F3F5", padding: "20px 20px 28px", borderTop: "1px solid var(--border)" }}>
+        <div style={{ maxWidth: 700, margin: "0 auto" }}>
+          <p style={{ fontSize: 12, fontWeight: 700, color: "#5A6577", marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.5 }}>Important Medical Disclaimer</p>
+          <p style={{ fontSize: 11.5, color: "#6B7785", lineHeight: 1.7, marginBottom: 8 }}>This tool is intended for <strong>educational and informational purposes only</strong>. It does not constitute medical advice, diagnosis, or treatment, and should not be used as a substitute for professional medical care. The content provided is general in nature and may not apply to your individual circumstances.</p>
+          <p style={{ fontSize: 11.5, color: "#6B7785", lineHeight: 1.7, marginBottom: 8 }}>Always seek the advice of your physician, hypertension specialist, or other qualified healthcare provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read or interacted with on this tool.</p>
+          <p style={{ fontSize: 11.5, color: "#6B7785", lineHeight: 1.7, marginBottom: 8 }}>The questionnaire results, treatment comparisons, and educational content are based on published clinical guidelines and medical literature but are simplified for patient understanding. Individual treatment decisions should be made in consultation with your healthcare team, who can account for your complete medical history, test results, and personal preferences.</p>
+          <p style={{ fontSize: 11.5, color: "#6B7785", lineHeight: 1.7 }}>The authors and developers of this tool accept no liability for any harm, loss, or damage arising from the use of or reliance on the information provided herein.</p>
+          <p style={{ fontSize: 11, color: "#A8B2BE", marginTop: 12 }}>© {new Date().getFullYear()} Dr. Sachin Pasricha. All rights reserved.</p>
+        </div>
       </div>
       <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } } @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } * { box-sizing: border-box; margin: 0; } button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; } ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }`}</style>
     </div>
